@@ -24,20 +24,41 @@ impl Contract {
         resultado
     }
 
+    pub fn sumar_acumulado(env: Env, a: i128, b: i128) -> i128 {
+        let resultado = a + b;
+        
+        // Obtener la lista existente o crear una nueva
+        let mut resultados: Vec<i128> = env.storage()
+            .instance()
+            .get(&RESULTADOS)
+            .unwrap_or(Ok(Vec::new(&env)))
+            .unwrap();
+        
+        // Agregar el nuevo resultado
+        resultados.push_back(resultado);
+        
+        // Guardar la lista actualizada
+        env.storage().instance().set(&RESULTADOS, &resultados);
+        env.storage().instance().extend_ttl(50, 100);
+        
+        resultado
+    }
+
     pub fn resultado_anterior(env: Env) -> i128 {
         // Obtenemos el valor almacenado, o devolvemos 0 si no existe
         env.storage()
            .instance()
            .get(&RESULTADO)
            .unwrap_or(0) // Valor por defecto si no hay dato almacenado
-    pub fn sumar(env: Env, a:i128, b:i128) -> i128 {
-      //Implementar función que sume dos números
-      return 20;
     }
 
-    pub fn resultado_anterior(env: Env) -> i128 {
-           //Implementar función que retorne el valor anterior
-            return 20;
+    // Nueva función para obtener todos los resultados
+    pub fn obtener_resultados(env: Env) -> Vec<i128> {
+        env.storage()
+            .instance()
+            .get(&RESULTADOS)
+            .unwrap_or(Ok(Vec::new(&env)))
+            .unwrap()
     }
 }
 
