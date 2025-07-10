@@ -1,14 +1,25 @@
-**Reto Workshop Soroban Sesión 1**
+# Reto Workshop Soroban Sesión 1 - Solución Avanzada
 
-😉**Pistas y guias para el reto:** [https://developers.stellar.org/docs/build/smart-contracts](https://developers.stellar.org/docs/build/smart-contracts)
+**Repositorio fork de John Ceciliano** con implementación de funciones adicionales para acumulación de sumas.
 
-*   implementar la función _sumar_, se le envian 2 números de parámetros
-*   implementar _resultado\_anterior, este debe retornar el valor que dió la suma anteriormente ( Storing Data), esto implica hacer algo en la función sumar🤔_
+## Funcionalidades implementadas
 
-_Clonar el respositorio y cuando esté resuelto subir el repositorio a tu github_
+1. **Función sumar(a, b) -> resultado**
+   - Realiza la suma de dos números enteros
+   - Almacena el resultado en el storage del contrato
+   - Registra el resultado en el historial de operaciones
 
-_debe dar ok el test automatico_
+2. **Función resultado_anterior() -> último_resultado**
+   - Devuelve el resultado de la última suma realizada
+   - Retorna 0 si no hay operaciones previas
 
-```plaintext
-cargo test
-```
+3. **Función extra: historial_sumas() -> Vec<i128>**
+   - Devuelve un vector con todos los resultados históricos
+   - Mantiene el orden cronológico (último resultado al final)
+
+## Instrucciones para probar
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/tu-usuario/StarMakerSorobanV1RetoS1Mex-fork.git
+cd StarMakerSorobanV1RetoS1Mex-fork
